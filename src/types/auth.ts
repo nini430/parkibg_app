@@ -1,3 +1,7 @@
+import { User } from "./user";
+
+export type FirstField='email'|'phoneNumber';
+
 export interface RegisterValues {
     firstName:string;
     lastName:string;
@@ -8,8 +12,17 @@ export interface RegisterValues {
     confirmPassword:string;
 }
 
+
 export type RegisterInput=Omit<RegisterValues,'confirmPassword'>
 
 export interface AuthInitialState {
     isRegisterPending:boolean;
+    isLoginPending:boolean;
+    authedUser: User | null;
+}
+
+export interface LoginValues {
+    email?:string;
+    phoneNumber?:string;
+    password:string;
 }
