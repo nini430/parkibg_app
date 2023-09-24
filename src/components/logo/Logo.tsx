@@ -2,7 +2,7 @@ import LogoImg from '../../assets/logo.jpg'
 
 const Logo = () => {
     return ( 
-        <img src={LogoImg} alt="logo" />
+        <img width={50} height='auto' src={LogoImg} alt="logo" />
      );
 }
  
