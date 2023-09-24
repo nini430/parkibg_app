@@ -1,3 +1,5 @@
+import {toast} from 'react-hot-toast'
+
 import apiRoutes from '@/api/apiRoutes';
 import axiosApiInstance from '@/lib/axiosInterceptors';
 import { AuthInitialState, RegisterInput } from '@/types/auth';
@@ -25,7 +27,6 @@ export const registerUser = createAsyncThunk(
       );
       onSuccess && onSuccess(response.data.message);
     } catch (err) {
-      console.log(err);
       return thunkApi.rejectWithValue(err);
     }
   }
@@ -42,9 +43,9 @@ const authReducer = createSlice({
     builder.addCase(registerUser.fulfilled, (state) => {
       state.isRegisterPending = false;
     });
-    builder.addCase(registerUser.rejected, (state, action) => {
-      console.log(action.payload);
+    builder.addCase(registerUser.rejected, (state, action:any) => {
       state.isRegisterPending = false;
+      toast.error(action.payload.response.data.message||'Unknown Error');
     });
   },
 });
